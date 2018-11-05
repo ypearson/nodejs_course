@@ -1,28 +1,72 @@
-// https://nodejs.org/api/
-// https://www.npmjs.com/
-// https://lodash.com/
+const fs    = require('fs');
+const _     = require('lodash');
+const yargs = require('yargs');
 
-console.log("starting app.js");
+const notes = require('./notes.js');
 
-const fs = require('fs');
-const _  = require('lodash')
+var yargsTitleOptions = { decribe:'Title of note',
+                          demand:true,
+                          alias: 'a'};
 
-const notes = require('./notes.js')
+var yargsBodyOptions  = { decribe:'body of note',
+                          demand:true,
+                          alias:'b'};
 
-var user = os.userInfo();
-console.log(user.username);
+const argv = yargs
+    .command('add', 'add new note',
+    {
+        title:yargsTitleOptions,
+        body: yargsBodyOptions,
+    })
+    .command('list', 'list all notes',{})
+    .command('read', 'read target note',
+    {
+        title: yargsTitleOptions,
+    })
+    .command('remove', 'remove note',
+    {
+        title: yargsTitleOptions,
+    })
+    .help()
+    .argv;
 
-var ret = notes.add(5,6)
-console.log(ret)
+var cmd = argv._[0];
 
-fs.appendFile('message.txt', `hello ${user.username} = ${notes.hello} \n`, (err) => {
-  if (err) throw err;
-  console.log('file operation completed');
-});
+if (cmd === 'add')
+{
+    if(! _.isUndefined(notes.addNote(argv.title, argv.body)))
+    {
+        console.log("AAnote added: ", `title ${argv.title}: ${argv.body}`)
+    }
+    else
+    {
+        console.log("dupe detected.")
+    }
+}
+else if (cmd === 'list')
+{
+    notes.getAll().forEach((element) => console.log(element));
+}
+else if (cmd === 'read')
+{
+    var note = notes.readNote(argv.title);
+    if(note)
+    {
+        console.log("Note read:", note.title, note.body);
+    }
+    else
+    {
+        console.log("Note not found");
+    }
+}
+else if (cmd === 'remove')
+{
+    var msg  = `title ${argv.title} `;
 
-
-console.log(_.isString("string"));
-
-var filteredArray = _.uniq([2,2,5, 'dog', 'dog', 'cat', 'hello', 'ok this is cool'])
-
-console.log(filteredArray);
+    msg += notes.removeNote(argv.title)?"removed":"not found";
+    console.log(msg);
+}
+else
+{
+    console.log('Command: ', 'not recognized command');
+}

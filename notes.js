@@ -1,15 +1,87 @@
 console.log("Starting notes.js");
 
-console.log(module)
+const fs = require('fs');
 
-module.exports.hello=100
-module.exports.addNote = (a,b) =>
+// var car = {type:"Fiat", model:"500", color:"white"};
+
+var fetchNotes = () =>
 {
-    console.log("added notes");
-    return a+b;
+    var notes = []
+    try
+    {
+        var notesString = fs.readFileSync("notes.json");
+        notes = JSON.parse(notesString);
+    }
+    catch (e)
+    {
+        notes = []
+    }
+
+    return notes;
+};
+
+// var dupes = notes.filter((note) => {
+    //     return note.title === title;
+    // });
+
+var saveNote = (notes) =>
+{
+    fs.writeFileSync("notes.json", JSON.stringify(notes));
+};
+
+var addNote = (title,body) =>
+{
+    var ret;
+
+    console.log("adding note:", title, body);
+
+    note = {
+        title,
+        body
+    };
+
+    notes = fetchNotes();
+    var dupes = notes.filter((note) => note.title === title);
+    if(dupes.length === 0)
+    {
+        notes.push(note);
+        saveNote(notes);
+        ret = note;
+        debugger;
+    }
+
+    return ret;
+};
+
+var getAll = () =>
+{
+    return fetchNotes();
 }
 
-module.exports.add = (a,b) =>
+var readNote = (title) =>
 {
-    return a+b;
+    var notes = fetchNotes();
+    return notes.filter( (note) => note.title === title)[0];
 }
+
+var removeNote = (title) =>
+{
+    var ret;
+    var notes = fetchNotes();
+    var remaining_notes = notes.filter( (note) => note.title !== title);
+    if(remaining_notes.length !== notes.length)
+    {
+        saveNote(remaining_notes);
+        ret = title;
+    }
+
+    return ret;
+}
+
+module.exports =
+{
+    addNote,
+    getAll,
+    readNote,
+    removeNote,
+};
