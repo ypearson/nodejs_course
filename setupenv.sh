@@ -3,6 +3,7 @@
 #  https://nodejs.org/api/
 #  https://www.npmjs.com/
 #  https://lodash.com/
+# https://www.npmjs.com/package/axios
 #  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
 
 sudo apt-get update
@@ -17,6 +18,7 @@ sudo apt-get install -y nodejs
 # nodemon app.js
 # npm install yargs@4.7.1 --save
 # npm install request@2.73.0 --save
+# npm install axios@0.13.1 --save
 
 # node inspect app.js add --title="23123" --body="56rget3"
 # nodemon inspect app.js add --title="23123" --body="56rget3"

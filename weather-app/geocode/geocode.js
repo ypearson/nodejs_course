@@ -5,8 +5,9 @@ const request = require('request');
 
 var geocodeAddress = (address, callback) =>
     {
+        var encodedAddress = encodeURIComponent(address);
         request({
-        url:'http://www.mapquestapi.com/geocoding/v1/address?key=KZhIbgQ2JP5epCkAr1W55fNRocosU1Xi&location='+encodeURIComponent(address),
+        url:'http://www.mapquestapi.com/geocoding/v1/address?key=KZhIbgQ2JP5epCkAr1W55fNRocosU1Xi&location='+encodedAddress,
         json: true
         },(error, response, body) =>
         {
