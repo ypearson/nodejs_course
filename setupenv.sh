@@ -33,3 +33,8 @@ sudo apt-get install -y nodejs
 # heroku keys:remove
 # heroku keys
 # ssh -v git@heroku.com
+# heroku create
+# git push heroku
+# heroku open
+
+
