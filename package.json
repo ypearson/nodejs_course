@@ -4,7 +4,9 @@
   "description": "app",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/mocha/bin/mocha server/**/*.test.js",
+    "test1": "mocha server/**/*.test.js",
+    "test-watch": "nodemod --exec 'npm test'",
     "start": "node node-web-server/server.js"
   },
   "author": "ypearson",

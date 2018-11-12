@@ -31,6 +31,7 @@ app.listen(process.env.PORT || 3000, () => {
   console.log("listening...");
 });
 
+module.exports={app};
 
 // var newUser = new User({
 //     name:'Bob',

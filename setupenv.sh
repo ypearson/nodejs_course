@@ -28,10 +28,10 @@ sudo service mongod start
 
 mkdir -p robo3t && wget -c https://download.robomongo.org/1.2.1/linux/robo3t-1.2.1-linux-x86_64-3e50a65.tar.gz  -O - | tar -xz --strip-components=1 -C robo3t
 
-# wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
-# sudo tar -xzf postman.tar.gz -C /opt
-# rm postman.tar.gz
-# sudo ln -s /opt/Postman/Postman /usr/bin/postman
+wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
+sudo tar -xzf postman.tar.gz -C /opt
+rm postman.tar.gz
+sudo ln -s /opt/Postman/Postman /usr/bin/postman
 
 # Path to database
 # /var/lib/mongodb
@@ -46,6 +46,8 @@ mkdir -p robo3t && wget -c https://download.robomongo.org/1.2.1/linux/robo3t-1.2
 # npm install hbs@4.0.0 --save
 # npm install mongodb@2.2.5 --save
 # npm i express@4.14.0 body-parser@1.15.2 --save
+# npm i expect@1.10.2 mocha@3.0.2 supertest@2.0.0 --save-dev
+# npm run test-watch
 
 # node inspect app.js add --title="23123" --body="56rget3"
 # nodemon inspect app.js add --title="23123" --body="56rget3"

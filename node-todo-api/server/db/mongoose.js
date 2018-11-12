@@ -6,7 +6,6 @@ var databaseName = 'TodoApp'
 
 mongoose.connect('mongodb://localhost:27017/'+databaseName);
 
-
 // module.exports = {
 //     mongoose: mongoose
 // }
