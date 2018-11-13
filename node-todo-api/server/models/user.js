@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 
-
-var User = mongoose.model('Users', {
+var Users = mongoose.model('users', {
     name:{
         type:String,
         required: true,
@@ -14,4 +13,18 @@ var User = mongoose.model('Users', {
     }
 });
 
-module.exports={User};
+Users.create(
+    { name: 'Star Wars',
+      email: "bob@gmail.com"})
+.then( (user) =>
+ {
+
+    console.log("Added:" , user);
+ });
+
+Users.find().then( (user) =>
+ {
+    console.log("Found:" , user);
+ });
+
+module.exports={Users};
