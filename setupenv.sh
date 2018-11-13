@@ -14,6 +14,7 @@
 # http://mongodb.github.io/node-mongodb-native/2.0/api/Cursor.html
 # https://mongoosejs.com/docs/guide.html
 # https://httpstatuses.com/
+# https://mlab.com/
 
 sudo apt-get update
 sudo apt-get install -y curl
@@ -58,7 +59,13 @@ sudo ln -s /opt/Postman/Postman /usr/bin/postman
 # heroku keys:remove
 # heroku keys
 # ssh -v git@heroku.com
+#
 # heroku create
+# The heroku create CLI command creates a new empty application on Heroku,
+# along with an associated empty Git repository. If you run this command
+# from your app’s root directory, the empty Heroku Git repository is
+# automatically set as a remote for your local repository.
+#
 # git push heroku
 # heroku open
 
