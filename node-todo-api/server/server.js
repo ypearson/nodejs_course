@@ -50,7 +50,7 @@ app.get('/todos/:id', (req,res) => {
             {
                 Todo.find({}).then((todo)=>{console.log("Users:", todo);});
                 console.log('todo: id not found');
-                res.status(400).send();
+                res.status(404).send();
             }
             else
             {
